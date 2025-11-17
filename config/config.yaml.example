@@ -1,0 +1,76 @@
+ls
+ > config/config.yaml.example << 'EOF'
+# AI Job Application Tracker Configuration
+# Copy this file to config.yaml and update with your settings
+
+# Email Accounts
+accounts:
+  - name: "Personal Gmail"
+    provider: gmail
+    email: "your.email@gmail.com"
+    token_file: "config/tokens/gmail_personal.json"
+    enabled: true
+
+  - name: "Outlook"
+    provider: outlook
+    email: "your.email@outlook.com"
+    token_file: "config/tokens/outlook_main.json"
+    enabled: true
+
+  - name: "iCloud"
+    provider: imap
+    email: "your.email@icloud.com"
+    imap_server: "imap.mail.me.com"
+    imap_port: 993
+    app_password: "your-icloud-app-password"
+    enabled: true
+
+# LLM Configuration - Choose ONE
+llm:
+  # Which provider to use: "anthropic" | "openai" | "google" | "ollama"
+  provider: "anthropic"
+
+  # Anthropic (Claude) Settings
+  anthropic:
+    api_key: "sk-ant-your-key-here"
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 1000
+    temperature: 0.0
+
+  # OpenAI (ChatGPT) Settings
+  openai:
+    api_key: "sk-your-openai-key-here"
+    model: "gpt-4o-mini"  # or "gpt-4o", "gpt-4-turbo"
+    max_tokens: 1000
+    temperature: 0.0
+
+  # Google (Gemini) Settings - OPTIONAL
+  google:
+    api_key: "your-google-api-key"
+    model: "gemini-pro"
+    max_tokens: 1000
+    temperature: 0.0
+
+  # Ollama (Local/Free) Settings - OPTIONAL
+  ollama:
+    base_url: "http://localhost:11434"
+    model: "llama3.1:8b"
+    max_tokens: 1000
+    temperature: 0.0
+
+# Google Sheets
+google_sheets:
+  enabled: true
+  spreadsheet_id: "your-spreadsheet-id-here"
+  credentials_file: "config/credentials/sheets_service.json"
+  sheet_name: "JobApplications"
+
+# General Settings
+settings:
+  fetch_hours: 24
+  log_level: "INFO"
+  sync_schedule:
+    - "08:00"
+    - "13:00"
+    - "18:00"
+EOF
